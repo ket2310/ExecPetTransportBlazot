@@ -2415,6 +2415,7 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "5.0.17",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "5.0.2",
           "Swashbuckle.AspNetCore": "5.6.3"
         },
         "compile": {
@@ -7643,11 +7644,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dablu\\OneDrive\\source\\repos\\ExecPetTransportBlazor\\ExecPetTransportBlazor\\ExecPetTransportBlazor.csproj",
+      "projectUniqueName": "C:\\Users\\dablu\\source\\repos\\ExecPetTransportBlazot\\ExecPetTransportBlazor\\ExecPetTransportBlazor.csproj",
       "projectName": "ExecPetTransportBlazor",
-      "projectPath": "C:\\Users\\dablu\\OneDrive\\source\\repos\\ExecPetTransportBlazor\\ExecPetTransportBlazor\\ExecPetTransportBlazor.csproj",
+      "projectPath": "C:\\Users\\dablu\\source\\repos\\ExecPetTransportBlazot\\ExecPetTransportBlazor\\ExecPetTransportBlazor.csproj",
       "packagesPath": "C:\\Users\\dablu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dablu\\OneDrive\\source\\repos\\ExecPetTransportBlazor\\ExecPetTransportBlazor\\obj\\",
+      "outputPath": "C:\\Users\\dablu\\source\\repos\\ExecPetTransportBlazot\\ExecPetTransportBlazor\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -7674,8 +7675,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\dablu\\OneDrive\\source\\repos\\ExecPetTransportBlazor\\ExecPetTransportBlazorAPI517\\ExecPetTransportBlazorAPI517.csproj": {
-              "projectPath": "C:\\Users\\dablu\\OneDrive\\source\\repos\\ExecPetTransportBlazor\\ExecPetTransportBlazorAPI517\\ExecPetTransportBlazorAPI517.csproj"
+            "C:\\Users\\dablu\\source\\repos\\ExecPetTransportBlazot\\ExecPetTransportBlazorAPI517\\ExecPetTransportBlazorAPI517.csproj": {
+              "projectPath": "C:\\Users\\dablu\\source\\repos\\ExecPetTransportBlazot\\ExecPetTransportBlazorAPI517\\ExecPetTransportBlazorAPI517.csproj"
             }
           }
         }
