@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ExecPetTransportBlazorAPI517.Data;
 using ExecPetTransportBlazorAPI517.Models;
+using ExecPetTransportBlazorAPI517.Repositories;
 
 namespace ExecPetTransportBlazorAPI517.Controllers
 {
@@ -14,95 +15,104 @@ namespace ExecPetTransportBlazorAPI517.Controllers
     [ApiController]
     public class QuotesController : ControllerBase
     {
-        private readonly QuoteContext _context;
+        private readonly IQuoteRepository _quoteRepository;
 
-        public QuotesController(QuoteContext context)
+        public QuotesController(IQuoteRepository quoteRepository)
         {
-            _context = context;
+            _quoteRepository = quoteRepository; 
         }
 
-        // GET: api/Quotes
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Quote>>> GetQuotes()
-        {
-            return await _context.Quotes.ToListAsync();
-        }
+        //// GET: api/Quotes
+        //[HttpGet]
+        //public async Task<ActionResult<IEnumerable<Quote>>> GetQuotes()
+        //{
+        //    return await _context.Quotes.ToListAsync();
+        //}
 
-        // GET: api/Quotes/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Quote>> GetQuote(int id)
-        {
-            var quote = await _context.Quotes.FindAsync(id);
+        //// GET: api/Quotes/5
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<Quote>> GetQuote(int id)
+        //{
+        //    var quote = await _context.Quotes.FindAsync(id);
 
-            if (quote == null)
-            {
-                return NotFound();
-            }
+        //    if (quote == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return quote;
-        }
+        //    return quote;
+        //}
 
-        // PUT: api/Quotes/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutQuote(int id, Quote quote)
-        {
-            if (id != quote.QuoteId)
-            {
-                return BadRequest();
-            }
+        //// PUT: api/Quotes/5
+        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutQuote(int id, Quote quote)
+        //{
+        //    if (id != quote.QuoteId)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            _context.Entry(quote).State = EntityState.Modified;
+        //    _context.Entry(quote).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!QuoteExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!QuoteExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
         // POST: api/Quotes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Quote>> PostQuote(Quote quote)
+        public async Task<ActionResult<Quote>> CreateQuote(Quote quote)
         {
-            _context.Quotes.Add(quote);
-            await _context.SaveChangesAsync();
+            try
+            {
+                if(quote == null)
+                    return BadRequest();
+
+                var quoteResult = await _quoteRepository.CreateTripQuote(quote);
+            }
+            catch
+            {
+
+            }
 
             return CreatedAtAction("GetQuote", new { id = quote.QuoteId }, quote);
         }
 
-        // DELETE: api/Quotes/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteQuote(int id)
-        {
-            var quote = await _context.Quotes.FindAsync(id);
-            if (quote == null)
-            {
-                return NotFound();
-            }
+        //// DELETE: api/Quotes/5
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeleteQuote(int id)
+        //{
+        //    var quote = await _context.Quotes.FindAsync(id);
+        //    if (quote == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _context.Quotes.Remove(quote);
-            await _context.SaveChangesAsync();
+        //    _context.Quotes.Remove(quote);
+        //    await _context.SaveChangesAsync();
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
-        private bool QuoteExists(int id)
-        {
-            return _context.Quotes.Any(e => e.QuoteId == id);
+        //private bool QuoteExists(int id)
+        //{
+        //    return _context.Quotes.Any(e => e.QuoteId == id);
         }
     }
 }
