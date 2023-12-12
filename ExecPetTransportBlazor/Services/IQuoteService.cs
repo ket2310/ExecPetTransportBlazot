@@ -6,7 +6,7 @@ namespace ExecPetTransportBlazor.Services
 {
     public interface IQuoteService
     {
-        Task<Quote> CreateEmployee(Quote quote);
+        Task CreateQuote(Quote quote);
        
     }
 }

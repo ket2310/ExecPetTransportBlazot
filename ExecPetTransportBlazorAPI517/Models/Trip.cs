@@ -10,6 +10,10 @@ namespace ExecPetTransportBlazorAPI517.Models
     {
                           
         public int TripId { get; set; }
+
+        [Key]
+        public Guid id { get; set; }
+
         public string TravelType { get; set; }
 
         public DateTime traveldate { get; set; }

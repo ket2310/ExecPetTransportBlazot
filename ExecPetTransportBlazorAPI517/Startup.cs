@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using ExecPetTransportBlazorAPI517.Repositories;
+using ExecPetTransportBlazorAPI517.Data;
 
 namespace ExecPetTransportBlazorAPI517
 {
@@ -30,6 +31,7 @@ namespace ExecPetTransportBlazorAPI517
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ExecPetTransportBlazorAPI517", Version = "v1" });
             });
             services.AddScoped<IQuoteRepository, QuoteRepository>();
+            services.AddDbContext<QuoteInMemoryContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

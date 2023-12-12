@@ -12,9 +12,9 @@ namespace ExecPetTransportBlazor.Services
         {
             this.httpClient = httpClient;
         }
-        public Task<Quote> CreateEmployee(Quote quote)
+        public async Task CreateQuote(Quote quote)
         {
-            return await httpClient.PostAsJsonAsync("api/quotes", quote);
+           await httpClient.PostAsJsonAsync("api/QuoteInMemory", quote);
         }
     }
 }

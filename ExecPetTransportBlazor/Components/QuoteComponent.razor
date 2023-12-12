@@ -73,8 +73,7 @@
                         at info@execpettransportation.com.
                     </p>
                 </td>
-            </tr>
-            <tr>
+
                 <td>
                     <p>
                         <strong>
@@ -88,10 +87,17 @@
                     </p>
                     <hr />
                     <h3>Your Contact Information</h3>
-                    <form className="lessonForm" onSubmit={handleFormSubmit}>
+                    <EditForm Model="@quoteModel" OnValidSubmit="HandleValidSubmit">
                         <div>
-                            <label> Your Name:</label>&nbsp;
-                            <input type="text" placeholder="Your Name" />
+                            <label> Your First Name:</label>&nbsp;
+                            <InputText id="firstName" class="form-control" placeholder="First Name"
+                                       @bind-Value="quoteModel.petowner.FirstName" />
+                            <ValidationMessage For="@(() => quoteModel.petowner.FirstName)" />
+                            <br />
+                            <label> Your Last Name:</label>&nbsp;
+                            <InputText id="firstName" class="form-control" placeholder="First Name"
+                                       @bind-Value="quoteModel.petowner.Lastname" />
+                            <ValidationMessage For="@(() => quoteModel.petowner.Lastname)" />
                             <br />
                             <label>E-mail:</label>&nbsp;
                             <input type="text" placeholder="E-mail" />
@@ -139,9 +145,71 @@
                             <textarea rows="4"
                                       cols="50"
                                       placeholder="Instructions"></textarea>
-                            <b />
+                            <br />
+                            <h3><strong>Travel Information</strong></h3>
+                            <label>Type of Travel</label><br />
+                            <select name="traveltype">
+                                <option defaultValue="<-- Select -->"></option>
+                                <option value="1" key="1">One Way Trip</option>
+                                <option value="2" key="2">Two Way Trip</option>
+                            </select>
+                            <br />
+                            <label>Date of Travel</label><br />
+                            <input type="text" placeholder="Travel Date" /><br />
+                            <label>Date of Return</label><br />
+                            <input type="text" placeholder="Return Date" /><br />
+                            <br />
+                            <br />
+                            <h3><strong>Pickup Address</strong></h3>
+
+                            <label>Address Line 1</label><br />
+                            <input type="text" /><br />
+                            <label>Address Line 2</label><br />
+                            <input type="text" /><br />
+
+                            <table>
+                                <tr>
+                                    <td><label>City</label></td>
+                                    <td><label>State</label></td>
+                                    <td><label>Zip</label></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="text" />
+                                    </td>
+                                    <td>
+                                        <input type="text" />
+                                    </td>
+                                    <td><input type="text" /></td>
+                                </tr>
+                            </table>
+                            <br />
+                            <br />
+                            <h3><strong>Destination Address</strong></h3>
+                            <label>Address Line 1</label><br />
+                            <input type="text" /><br />
+                            <label>Address Line 2</label><br />
+                            <input type="text" /><br />
+                            <table>
+                                <tr>
+                                    <td><label>City</label></td>
+                                    <td><label>State</label></td>
+                                    <td><label>Zip</label></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="text" />
+                                    </td>
+                                    <td>
+                                        <input type="text" />
+                                    </td>
+                                    <td><input type="text" /></td>
+                                </tr>
+                            </table>
+                            <br />
+                            <button>Submit</button>
                         </div>
-                    </form>
+                    </EditForm>
                 </td>
             </tr>
         </table>
