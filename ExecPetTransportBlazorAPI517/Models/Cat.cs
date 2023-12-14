@@ -10,8 +10,7 @@ namespace ExecPetTransportBlazorAPI517.Models
     {
         public int CatId { get; set; }
 
-        [Key]
-        public Guid id { get; set; }
+     
 
         public string Breed { get; set; }
 
@@ -20,8 +19,6 @@ namespace ExecPetTransportBlazorAPI517.Models
         public int Age { get; set; }
 
         public int Weight { get; set; }
-
-        public int OwnerId { get; set; }
 
         public Owner Owner { get; set; }
     }

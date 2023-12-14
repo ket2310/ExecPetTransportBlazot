@@ -31,7 +31,7 @@ namespace ExecPetTransportBlazorAPI517
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ExecPetTransportBlazorAPI517", Version = "v1" });
             });
             services.AddScoped<IQuoteRepository, QuoteRepository>();
-            services.AddDbContext<QuoteInMemoryContext>();
+            //services.AddDbContext<QuoteInMemoryContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

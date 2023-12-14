@@ -15,10 +15,14 @@ namespace ExecPetTransportBlazorAPI517.Data
             optionsBuilder.UseInMemoryDatabase(databaseName: "ExecPetDB");
         }
 
-        public DbSet<Quote> Quotes { get; set; }
-
         public DbSet<Cat> Cats { get; set; }
 
         public DbSet<Dog> Dogs { get; set; }
+
+        public DbSet<Owner> Owners { get; set; }
+
+        public DbSet<Quote> Quotes { get; set; }
+
+        public DbSet<Trip> Trips { get; set; }
     }
 }

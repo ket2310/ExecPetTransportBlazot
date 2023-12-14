@@ -3,10 +3,42 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ExecPetTransportBlazorAPI517.Migrations
 {
-    public partial class NewMigrationFromAPI : Migration
+    public partial class initialdatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Cats",
+                columns: table => new
+                {
+                    CatId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Breed = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    Weight = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cats", x => x.CatId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Dogs",
+                columns: table => new
+                {
+                    DogId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Breed = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    Weight = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Dogs", x => x.DogId);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Quotes",
                 columns: table => new
@@ -20,7 +52,7 @@ namespace ExecPetTransportBlazorAPI517.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Owner",
+                name: "Owners",
                 columns: table => new
                 {
                     OwnerId = table.Column<int>(type: "int", nullable: false)
@@ -31,13 +63,27 @@ namespace ExecPetTransportBlazorAPI517.Migrations
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CellNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Instructions = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    catId = table.Column<int>(type: "int", nullable: false),
+                    dogId = table.Column<int>(type: "int", nullable: false),
                     quoteId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Owner", x => x.OwnerId);
+                    table.PrimaryKey("PK_Owners", x => x.OwnerId);
                     table.ForeignKey(
-                        name: "FK_Owner_Quotes_quoteId",
+                        name: "FK_Owners_Cats_catId",
+                        column: x => x.catId,
+                        principalTable: "Cats",
+                        principalColumn: "CatId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Owners_Dogs_dogId",
+                        column: x => x.dogId,
+                        principalTable: "Dogs",
+                        principalColumn: "DogId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Owners_Quotes_quoteId",
                         column: x => x.quoteId,
                         principalTable: "Quotes",
                         principalColumn: "QuoteId",
@@ -45,7 +91,7 @@ namespace ExecPetTransportBlazorAPI517.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Trip",
+                name: "Trips",
                 columns: table => new
                 {
                     TripId = table.Column<int>(type: "int", nullable: false)
@@ -68,82 +114,36 @@ namespace ExecPetTransportBlazorAPI517.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Trip", x => x.TripId);
+                    table.PrimaryKey("PK_Trips", x => x.TripId);
                     table.ForeignKey(
-                        name: "FK_Trip_Quotes_quoteId",
+                        name: "FK_Trips_Quotes_quoteId",
                         column: x => x.quoteId,
                         principalTable: "Quotes",
                         principalColumn: "QuoteId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Cats",
-                columns: table => new
-                {
-                    CatId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Breed = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    Age = table.Column<int>(type: "int", nullable: false),
-                    Weight = table.Column<int>(type: "int", nullable: false),
-                    OwnerId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Cats", x => x.CatId);
-                    table.ForeignKey(
-                        name: "FK_Cats_Owner_OwnerId",
-                        column: x => x.OwnerId,
-                        principalTable: "Owner",
-                        principalColumn: "OwnerId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Dogs",
-                columns: table => new
-                {
-                    DogId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Breed = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    Age = table.Column<int>(type: "int", nullable: false),
-                    Weight = table.Column<int>(type: "int", nullable: false),
-                    OwnerId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Dogs", x => x.DogId);
-                    table.ForeignKey(
-                        name: "FK_Dogs_Owner_OwnerId",
-                        column: x => x.OwnerId,
-                        principalTable: "Owner",
-                        principalColumn: "OwnerId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
-                name: "IX_Cats_OwnerId",
-                table: "Cats",
-                column: "OwnerId",
+                name: "IX_Owners_catId",
+                table: "Owners",
+                column: "catId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Dogs_OwnerId",
-                table: "Dogs",
-                column: "OwnerId",
+                name: "IX_Owners_dogId",
+                table: "Owners",
+                column: "dogId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Owner_quoteId",
-                table: "Owner",
+                name: "IX_Owners_quoteId",
+                table: "Owners",
                 column: "quoteId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Trip_quoteId",
-                table: "Trip",
+                name: "IX_Trips_quoteId",
+                table: "Trips",
                 column: "quoteId",
                 unique: true);
         }
@@ -151,16 +151,16 @@ namespace ExecPetTransportBlazorAPI517.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Owners");
+
+            migrationBuilder.DropTable(
+                name: "Trips");
+
+            migrationBuilder.DropTable(
                 name: "Cats");
 
             migrationBuilder.DropTable(
                 name: "Dogs");
-
-            migrationBuilder.DropTable(
-                name: "Trip");
-
-            migrationBuilder.DropTable(
-                name: "Owner");
 
             migrationBuilder.DropTable(
                 name: "Quotes");

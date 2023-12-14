@@ -4,14 +4,16 @@ using ExecPetTransportBlazorAPI517.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ExecPetTransportBlazorAPI517.Migrations
 {
-    [DbContext(typeof(QuoteContext))]
-    partial class QuoteContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(CoyoteQuoteContext))]
+    [Migration("20231214190217_initialdatabase")]
+    partial class initialdatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,9 +34,6 @@ namespace ExecPetTransportBlazorAPI517.Migrations
                     b.Property<string>("Breed")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OwnerId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -42,9 +41,6 @@ namespace ExecPetTransportBlazorAPI517.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("CatId");
-
-                    b.HasIndex("OwnerId")
-                        .IsUnique();
 
                     b.ToTable("Cats");
                 });
@@ -62,9 +58,6 @@ namespace ExecPetTransportBlazorAPI517.Migrations
                     b.Property<string>("Breed")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OwnerId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -72,9 +65,6 @@ namespace ExecPetTransportBlazorAPI517.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("DogId");
-
-                    b.HasIndex("OwnerId")
-                        .IsUnique();
 
                     b.ToTable("Dogs");
                 });
@@ -104,15 +94,27 @@ namespace ExecPetTransportBlazorAPI517.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("catId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("dogId")
+                        .HasColumnType("int");
+
                     b.Property<int>("quoteId")
                         .HasColumnType("int");
 
                     b.HasKey("OwnerId");
 
+                    b.HasIndex("catId")
+                        .IsUnique();
+
+                    b.HasIndex("dogId")
+                        .IsUnique();
+
                     b.HasIndex("quoteId")
                         .IsUnique();
 
-                    b.ToTable("Owner");
+                    b.ToTable("Owners");
                 });
 
             modelBuilder.Entity("ExecPetTransportBlazorAPI517.Models.Quote", b =>
@@ -184,38 +186,32 @@ namespace ExecPetTransportBlazorAPI517.Migrations
                     b.HasIndex("quoteId")
                         .IsUnique();
 
-                    b.ToTable("Trip");
-                });
-
-            modelBuilder.Entity("ExecPetTransportBlazorAPI517.Models.Cat", b =>
-                {
-                    b.HasOne("ExecPetTransportBlazorAPI517.Models.Owner", "Owner")
-                        .WithOne("cat")
-                        .HasForeignKey("ExecPetTransportBlazorAPI517.Models.Cat", "OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Owner");
-                });
-
-            modelBuilder.Entity("ExecPetTransportBlazorAPI517.Models.Dog", b =>
-                {
-                    b.HasOne("ExecPetTransportBlazorAPI517.Models.Owner", "Owner")
-                        .WithOne("dog")
-                        .HasForeignKey("ExecPetTransportBlazorAPI517.Models.Dog", "OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Owner");
+                    b.ToTable("Trips");
                 });
 
             modelBuilder.Entity("ExecPetTransportBlazorAPI517.Models.Owner", b =>
                 {
+                    b.HasOne("ExecPetTransportBlazorAPI517.Models.Cat", "cat")
+                        .WithOne("Owner")
+                        .HasForeignKey("ExecPetTransportBlazorAPI517.Models.Owner", "catId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ExecPetTransportBlazorAPI517.Models.Dog", "dog")
+                        .WithOne("Owner")
+                        .HasForeignKey("ExecPetTransportBlazorAPI517.Models.Owner", "dogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ExecPetTransportBlazorAPI517.Models.Quote", "quote")
                         .WithOne("petowner")
                         .HasForeignKey("ExecPetTransportBlazorAPI517.Models.Owner", "quoteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("cat");
+
+                    b.Navigation("dog");
 
                     b.Navigation("quote");
                 });
@@ -231,11 +227,14 @@ namespace ExecPetTransportBlazorAPI517.Migrations
                     b.Navigation("quote");
                 });
 
-            modelBuilder.Entity("ExecPetTransportBlazorAPI517.Models.Owner", b =>
+            modelBuilder.Entity("ExecPetTransportBlazorAPI517.Models.Cat", b =>
                 {
-                    b.Navigation("cat");
+                    b.Navigation("Owner");
+                });
 
-                    b.Navigation("dog");
+            modelBuilder.Entity("ExecPetTransportBlazorAPI517.Models.Dog", b =>
+                {
+                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("ExecPetTransportBlazorAPI517.Models.Quote", b =>
