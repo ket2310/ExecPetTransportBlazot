@@ -1,5 +1,6 @@
 ﻿using ExecPetTransportBlazorAPI517.Data;
 using ExecPetTransportBlazorAPI517.Models;
+using ExecPetTransportBlazorAPI517.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,15 +11,17 @@ using System.Threading.Tasks;
 
 namespace ExecPetTransportBlazorAPI517.Controllers
 {
+
+
     [Route("api/[controller]")]
     [ApiController]
     public class QuoteInMemoryController : ControllerBase
     {
-        private readonly QuoteInMemoryContext _dbcontext;
+        private readonly IQuoteRepository _quoteRepository;
 
-        public QuoteInMemoryController(QuoteInMemoryContext dbcontext)
+        public QuoteInMemoryController(QuoteRepository  quoteRepository)
         {
-            _dbcontext = dbcontext;
+            _quoteRepository = quoteRepository;
                 
         }
         // GET: api/<QuoteInMemoryController>
@@ -40,19 +43,19 @@ namespace ExecPetTransportBlazorAPI517.Controllers
         public async Task<ActionResult<QuoteModel>> CreateQuote(QuoteModel quote)
         {
             Quote q = new Quote();
-            q.id = Guid.NewGuid();
+            //q.id = Guid.NewGuid();
             
-            Owner o = new Owner();
-            o.id = Guid.NewGuid();
+            //Owner o = new Owner();
+            //o.id = Guid.NewGuid();
             
-            Cat c = new Cat();
-            c.id = Guid.NewGuid();
+            //Cat c = new Cat();
+            //c.id = Guid.NewGuid();
             
-            Dog d = new Dog();
-            d.id = Guid.NewGuid();
+            //Dog d = new Dog();
+            //d.id = Guid.NewGuid();
             
-            Trip t = new Trip();
-            t.id = Guid.NewGuid();
+            //Trip t = new Trip();
+            //t.id = Guid.NewGuid();
 
 
             return Ok(q);

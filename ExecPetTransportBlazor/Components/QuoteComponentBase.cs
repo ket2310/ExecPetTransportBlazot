@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using ExecPetTransportBlazor.Services;
 using ExecPetTransportBlazorAPI517.Models;
+using ExecPetTransportBlazor.Services;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
@@ -11,17 +11,29 @@ namespace ExecPetTransportBlazor.Components
 {
     public class QuoteComponentBase : ComponentBase
     {
-        [Inject]
-        public IQuoteService QuoteService{ get; set; }
+        //[Inject]
+        //public IQuoteService QuoteService{ get; set; }
 
-        private Quote Quote { get; set; } = new Quote();
+        public Quote Quote { get; set; } = new Quote();
 
         public QuoteModel quoteModel { get; set; } = new QuoteModel();
-
-        [Parameter]
-        public string Id { get; set; }
-
+        
+        
         [Inject]
+        public IClientTravelTypeRepository TravelTypeService { get; set; }
+
+        public List<TravelType> TravelTypes { get; set; } = new List<TravelType>();
+
+        public string TravelTypeId { get; set; }
+
+
+        protected async override Task OnInitializedAsync()
+        {
+            TravelTypes = (List<TravelType>)await TravelTypeService.LoadTraveltypes();
+            
+        }
+    
+    [Inject]
         public IMapper Mapper { get; set; }
 
         [Inject]
@@ -39,13 +51,13 @@ namespace ExecPetTransportBlazor.Components
         //    {
         //        Quote = new Quote
         //        {
-        //            DepartmentId = 1,
+        //            TravelTypeId = 1,
         //            DateOfBrith = DateTime.Now,
         //            PhotoPath = "images/nophoto.jpg"
         //        };
         //    }
 
-        //    Departments = (await DepartmentService.GetDepartments()).ToList();
+        //    TravelTypes = (await TravelTypeService.GetTravelTypes()).ToList();
         //    Mapper.Map(Quote, QuoteModel);
         //}
 
@@ -61,7 +73,7 @@ namespace ExecPetTransportBlazor.Components
             }
             else
             {
-               await QuoteService.CreateQuote(Quote);
+                //await QuoteService.CreateQuote(Quote);
             }
             if (result != null)
             {

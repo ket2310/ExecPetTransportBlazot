@@ -1,4 +1,7 @@
 using ExecPetTransportBlazor.Data;
+using ExecPetTransportBlazor.Services;
+using ExecPetTransportBlazorAPI517.Repositories;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +32,14 @@ namespace ExecPetTransportBlazor
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+            services.AddScoped<IQuoteRepository, QuoteRepository>();
+            services.AddScoped<ITravelTypeRepository, TravelTypeRepository>();
+
+            services.AddHttpClient<IClientTravelTypeRepository,ClientTravelTypeService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:44376/");
+            });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

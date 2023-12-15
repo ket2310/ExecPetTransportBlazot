@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace ExecPetTransportBlazor.Services
+namespace ExecPetTransportBlazorAPI517.Services
 {
     public interface IQuoteService
     {

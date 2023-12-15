@@ -121,7 +121,7 @@
                             <p>Please fill out all applicable fields</p>
                             <label> Number of Cats:</label>&nbsp;
                             <MyInput id="numberofcats" class="form-control" placeholder="Number of Cats"
-                                       @bind-Value="@quoteModel.petowner.cat.Quantity" />
+                                     @bind-Value="@quoteModel.petowner.cat.Quantity" />
                             <ValidationMessage For="@(() => quoteModel.petowner.cat.Quantity)" />
                             <br />
                             <label> Breed:</label>&nbsp;
@@ -131,7 +131,7 @@
                             <br />
                             <label> Age:</label>&nbsp;
                             <MyInput id="age" class="form-control" placeholder="Age"
-                                       @bind-Value="quoteModel.petowner.cat.Age" />
+                                     @bind-Value="quoteModel.petowner.cat.Age" />
                             <ValidationMessage For="@(() => quoteModel.petowner.cat.Age)" />
                             <br />
                             <label> Weight:</label>&nbsp;
@@ -164,12 +164,16 @@
                                 know about your pet(s)?
                             </label>
                             <br />
-                            <textarea @bind="quoteModel.petowner.Instructions"/>
+                            <textarea @bind="quoteModel.petowner.Instructions" />
                             <br />
                             <h3><strong>Travel Information</strong></h3>
                             <label>Type of Travel</label><br />
-                         
-
+                            <MyInput id="department" @bind-Value="TravelTypeId" class="form-control">
+                                @foreach (var trip in TravelTypes)
+                                {
+                                    <option value="@trip.TravelTypeId">@trip.Description</option>
+                                }
+                            </MyInput>
                             <br />
                             <label>Date of Travel</label><br />
                             <input type="text" placeholder="Travel Date" /><br />

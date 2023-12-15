@@ -24,5 +24,8 @@ namespace ExecPetTransportBlazorAPI517.Data
         public DbSet<Quote> Quotes { get; set; }
 
         public DbSet<Trip> Trips { get; set; }
+
+        public DbSet<TravelType> TravelType { get; set; }
+
     }
 }

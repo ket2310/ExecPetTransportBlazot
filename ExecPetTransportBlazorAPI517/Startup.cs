@@ -10,6 +10,7 @@ using Microsoft.OpenApi.Models;
 using ExecPetTransportBlazorAPI517.Repositories;
 using ExecPetTransportBlazorAPI517.Data;
 
+
 namespace ExecPetTransportBlazorAPI517
 {
     public class Startup
@@ -31,6 +32,9 @@ namespace ExecPetTransportBlazorAPI517
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ExecPetTransportBlazorAPI517", Version = "v1" });
             });
             services.AddScoped<IQuoteRepository, QuoteRepository>();
+            services.AddScoped<ITravelTypeRepository, TravelTypeRepository>();
+            
+            services.AddDbContext<CoyoteQuoteContext>();
             //services.AddDbContext<QuoteInMemoryContext>();
         }
 

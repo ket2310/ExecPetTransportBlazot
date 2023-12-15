@@ -5,7 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\QuoteInMemoryController.cs" />
+    <Compile Remove="Services\**" />
+    <Content Remove="Services\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Data\QuoteInMemoryContext.cs" />
   </ItemGroup>
 

@@ -6,9 +6,9 @@ namespace ExecPetTransportBlazorAPI517.Repositories
 {
     public interface ITravelTypeRepository
     {
-        Task<IEnumerable<TravelType>> GetTravelTypes();
-        Task<TravelType> GetTravelType(int TravelTypeId);
+        //Task<IEnumerable<TravelType>> GetTravelTypes();
+        //Task<TravelType> GetTravelType(int TravelTypeId);
 
-        Task<IEnumerable<TravelType>> LoadTRaveltypes();
+        IEnumerable<TravelType> LoadTraveltypes();
     }
 }

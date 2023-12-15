@@ -1,8 +1,9 @@
 ﻿using ExecPetTransportBlazorAPI517.Models;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace ExecPetTransportBlazor.Services
+namespace ExecPetTransportBlazorAPI517.Services
 {
     public class QuoteService : IQuoteService
     {
