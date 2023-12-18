@@ -6,10 +6,13 @@
 
   <ItemGroup>
     <Compile Remove="Data\QuoteContext.cs" />
+    <Compile Remove="Services\ClientTravelTypeService.cs" />
+    <Compile Remove="Services\IClientTravelTypeRepository.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
       <PrivateAssets>all</PrivateAssets>
@@ -25,6 +28,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ExecPetTransportBlazorAPI517\ExecPetTransportBlazorAPI517.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

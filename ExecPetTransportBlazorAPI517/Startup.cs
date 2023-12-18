@@ -32,9 +32,9 @@ namespace ExecPetTransportBlazorAPI517
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ExecPetTransportBlazorAPI517", Version = "v1" });
             });
             services.AddScoped<IQuoteRepository, QuoteRepository>();
-            services.AddScoped<ITravelTypeRepository, TravelTypeRepository>();
+            //services.AddScoped<ITravelTypeRepository, TravelTypeRepository>();
             
-            services.AddDbContext<CoyoteQuoteContext>();
+            services.AddDbContext<QuoteContext>();
             //services.AddDbContext<QuoteInMemoryContext>();
         }
 

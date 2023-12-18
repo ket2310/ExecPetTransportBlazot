@@ -10,10 +10,14 @@ namespace ExecPetTransportBlazorAPI517.Models
     {
         public int QuoteId { get; set; }
 
-        public Owner petowner { get; set; }
-        public Trip trip { get; set; }
+        public string FirstName { get; set; }
+        public string Lastname { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public string CellNumber { get; set; }
+        public string Instructions { get; set; }
 
-         
+
     }
 
 }

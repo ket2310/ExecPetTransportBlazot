@@ -13,6 +13,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using ExecPetTransportBlazor.Models;
 
 namespace ExecPetTransportBlazor
 {
@@ -32,8 +34,9 @@ namespace ExecPetTransportBlazor
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
-            services.AddScoped<IQuoteRepository, QuoteRepository>();
-            services.AddScoped<ITravelTypeRepository, TravelTypeRepository>();
+            services.AddAutoMapper(typeof(QuoteProfile));
+           
+            
 
             services.AddHttpClient<IClientTravelTypeRepository,ClientTravelTypeService>(client =>
             {

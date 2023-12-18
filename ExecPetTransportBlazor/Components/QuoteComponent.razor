@@ -1,12 +1,16 @@
-﻿@page "/Quotes"
+﻿@page "/components/quotecomponent"
 @using ExecPetTransportBlazor.Pages;
+@using ExecPetTransportBlazorAPI517.Models;
 @inherits QuoteComponentBase
-<h3>QuoteComponent</h3>
+<h3>Quote Component</h3>
+
+
 
 <div>
     <div>
         <h1>
             <center>
+                <j1>You are here</j1>
                 <strong>Request a FREE QUOTE - FILL OUT FORM BELOW</strong>
             </center>
         </h1>
@@ -88,154 +92,13 @@
                     </p>
                     <hr />
                     <h3>Your Contact Information</h3>
-                    <EditForm Model="@quoteModel" OnValidSubmit="HandleValidSubmit">
-                        <div>
-                            <label> Your First Name:</label>&nbsp;
-                            <InputText id="firstName" class="form-control" placeholder="First Name"
-                                       @bind-Value="quoteModel.petowner.FirstName" />
-                            <ValidationMessage For="@(() => quoteModel.petowner.FirstName)" />
-                            <br />
-                            <label> Your Last Name:</label>&nbsp;
-                            <InputText id="firstName" class="form-control" placeholder="First Name"
-                                       @bind-Value="quoteModel.petowner.Lastname" />
-                            <ValidationMessage For="@(() => quoteModel.petowner.Lastname)" />
-                            <br />
-                            <label>E-mail:</label>&nbsp;
-                            <InputText id="email" class="form-control" placeholder="Email"
-                                       @bind-Value="quoteModel.petowner.Email" />
-                            <ValidationMessage For="@(() => quoteModel.petowner.Email)" />
-                            <br />
-                            <label> Phone Number:</label>&nbsp;
-                            <InputText id="phonenumber" class="form-control" placeholder="Phone Number"
-                                       @bind-Value="quoteModel.petowner.PhoneNumber" />
-                            <ValidationMessage For="@(() => quoteModel.petowner.PhoneNumber)" />
-                            <br />
-                            <label>Cell Phone:</label>&nbsp;
-                            <InputText id="cellphonw" class="form-control" placeholder="Cell Phone"
-                                       @bind-Value="quoteModel.petowner.CellNumber" />
-                            <ValidationMessage For="@(() => quoteModel.petowner.CellNumber  )" />
-                            <br />
-                            <h3>
-                                <strong>Pet Information</strong>
-                            </h3>
-                            <p>Please fill out all applicable fields</p>
-                            <label> Number of Cats:</label>&nbsp;
-                            <MyInput id="numberofcats" class="form-control" placeholder="Number of Cats"
-                                     @bind-Value="@quoteModel.petowner.cat.Quantity" />
-                            <ValidationMessage For="@(() => quoteModel.petowner.cat.Quantity)" />
-                            <br />
-                            <label> Breed:</label>&nbsp;
-                            <InputText id="breed" class="form-control" placeholder=""
-                                       @bind-Value="quoteModel.petowner.cat.Breed" />
-                            <ValidationMessage For="@(() => quoteModel.petowner.cat.Breed)" />
-                            <br />
-                            <label> Age:</label>&nbsp;
-                            <MyInput id="age" class="form-control" placeholder="Age"
-                                     @bind-Value="quoteModel.petowner.cat.Age" />
-                            <ValidationMessage For="@(() => quoteModel.petowner.cat.Age)" />
-                            <br />
-                            <label> Weight:</label>&nbsp;
-                            <MyInput id="weight" class="form-control" placeholder="Weight"
-                                     @bind-Value="quoteModel.petowner.cat.Weight" />
-                            <ValidationMessage For="@(() => quoteModel.petowner.cat.Weight)" />
-                            <br />
-                            <br />
-                            <label> Number of Dogs:</label>&nbsp;
-                            <MyInput id="numberofdogs" class="form-control" placeholder="Number of Cats"
-                                     @bind-Value="@quoteModel.petowner.dog.Quantity" />
-                            <ValidationMessage For="@(() => quoteModel.petowner.dog.Quantity)" />
-                            <br />
-                            <label> Breed:</label>&nbsp;
-                            <InputText id="breed" class="form-control" placeholder=""
-                                       @bind-Value="quoteModel.petowner.dog.Breed" />
-                            <ValidationMessage For="@(() => quoteModel.petowner.dog.Breed)" />
-                            <br />
-                            <label> Age:</label>&nbsp;
-                            <MyInput id="age" class="form-control" placeholder="Age"
-                                     @bind-Value="quoteModel.petowner.dog.Age" />
-                            <ValidationMessage For="@(() => quoteModel.petowner.dog.Age)" />
-                            <br />
-                            <label> Weight:</label>&nbsp;
-                            <MyInput id="weight" class="form-control" placeholder="Weight"
-                                     @bind-Value="quoteModel.petowner.dog.Weight" />
-                            <ValidationMessage For="@(() => quoteModel.petowner.dog.Weight)" />
-                            <label>
-                                Any special instructions/medical information we need to
-                                know about your pet(s)?
-                            </label>
-                            <br />
-                            <textarea @bind="quoteModel.petowner.Instructions" />
-                            <br />
-                            <h3><strong>Travel Information</strong></h3>
-                            <label>Type of Travel</label><br />
-                            <MyInput id="department" @bind-Value="TravelTypeId" class="form-control">
-                                @foreach (var trip in TravelTypes)
-                                {
-                                    <option value="@trip.TravelTypeId">@trip.Description</option>
-                                }
-                            </MyInput>
-                            <br />
-                            <label>Date of Travel</label><br />
-                            <input type="text" placeholder="Travel Date" /><br />
-                            <label>Date of Return</label><br />
-                            <input type="text" placeholder="Return Date" /><br />
-                            <br />
-                            <br />
-                            <h3><strong>Pickup Address</strong></h3>
-
-                            <label>Address Line 1</label><br />
-                            <input type="text" /><br />
-                            <label>Address Line 2</label><br />
-                            <input type="text" /><br />
-
-                            <table>
-                                <tr>
-                                    <td><label>City</label></td>
-                                    <td><label>State</label></td>
-                                    <td><label>Zip</label></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="text" />
-                                    </td>
-                                    <td>
-                                        <input type="text" />
-                                    </td>
-                                    <td><input type="text" /></td>
-                                </tr>
-                            </table>
-                            <br />
-                            <br />
-                            <h3><strong>Destination Address</strong></h3>
-                            <label>Address Line 1</label><br />
-                            <input type="text" /><br />
-                            <label>Address Line 2</label><br />
-                            <input type="text" /><br />
-                            <table>
-                                <tr>
-                                    <td><label>City</label></td>
-                                    <td><label>State</label></td>
-                                    <td><label>Zip</label></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="text" />
-                                    </td>
-                                    <td>
-                                        <input type="text" />
-                                    </td>
-                                    <td><input type="text" /></td>
-                                </tr>
-                            </table>
-                            <br />
-                            <button>Submit</button>
-                        </div>
-                    </EditForm>
+                    
                 </td>
             </tr>
         </table>
     </div>
 </div>
+
 @code {
 
 }

@@ -14,9 +14,9 @@ namespace ExecPetTransportBlazorAPI517.Controllers
     [ApiController]
     public class TravelTypesController : ControllerBase
     {
-        private readonly CoyoteQuoteContext _context;
+        private readonly QuoteContext _context;
 
-        public TravelTypesController(CoyoteQuoteContext context)
+        public TravelTypesController(QuoteContext context)
         {
             _context = context;
         }

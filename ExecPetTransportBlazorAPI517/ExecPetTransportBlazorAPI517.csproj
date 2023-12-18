@@ -12,7 +12,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\TravelTypesController.cs" />
+    <Compile Remove="Controllers\TravelTypesInMemoryController.cs" />
     <Compile Remove="Data\QuoteInMemoryContext.cs" />
+    <Compile Remove="Models\Cat.cs" />
+    <Compile Remove="Models\Dog.cs" />
+    <Compile Remove="Models\Owner.cs" />
+    <Compile Remove="Models\QuoteModel.cs" />
+    <Compile Remove="Models\TravelType.cs" />
+    <Compile Remove="Models\Trip.cs" />
+    <Compile Remove="Repositories\ITravelTypeRepository.cs" />
+    <Compile Remove="Repositories\ITripRepository.cs" />
+    <Compile Remove="Repositories\TravelTypeRepository.cs" />
+    <Compile Remove="Repositories\TripRepository.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +41,10 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

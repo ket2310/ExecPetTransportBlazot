@@ -7,9 +7,9 @@ namespace ExecPetTransportBlazorAPI517.Repositories
 {
     public class QuoteRepository : IQuoteRepository
     {
-        private readonly CoyoteQuoteContext _qContext;
+        private readonly QuoteContext _qContext;
 
-        public QuoteRepository(CoyoteQuoteContext qContext)
+        public QuoteRepository(QuoteContext qContext)
         {
             _qContext= qContext;
         }
