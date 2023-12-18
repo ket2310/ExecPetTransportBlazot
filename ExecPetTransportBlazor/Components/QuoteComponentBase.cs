@@ -17,7 +17,7 @@ namespace ExecPetTransportBlazor.Components
        // public QuoteModel quoteModel { get; set; } = new QuoteModel();
 
         [Inject]
-        public IClientTravelTypeRepository TravelTypeService { get; set; }
+       // public IClientTravelTypeRepository TravelTypeService { get; set; }
      //   public List<TravelType> TravelTypes { get; set; } = new List<TravelType>();
         public string TravelTypeId { get; set; }
         protected async override Task OnInitializedAsync()
